@@ -1,17 +1,35 @@
 import java.util.*;
 
-class ListMapper{
+interface ListMapper{
+	public int multiplyby5(int element);
+}
+
+interface ListFilter{
+	public boolean isGreaterThan5(int element);
+}
+
+// class ListMapper{
+// 	public int multiplyby5(int element){
+// 		return element*5;
+// 	}
+// }
+
+// class ListFilter{
+// 	public boolean isGreaterThan5(int element){
+// 		return element > 5;
+// 	}
+// }
+
+
+class  CollectionUtilsFuncs implements ListMapper, ListFilter{
 	public int multiplyby5(int element){
 		return element*5;
 	}
-}
 
-class ListFilter{
 	public boolean isGreaterThan5(int element){
 		return element > 5;
 	}
 }
-
 
 public class CollectionUtils{
 	public static List<Integer> map(List<Integer> list, ListMapper listMapper){

@@ -2,12 +2,14 @@ import org.junit.Test;
 import java.util.*;
 import static org.junit.Assert.*;
 
+
+
 public class CollectionUtilsTest{
 
 	@Test
 	public void map_will_perform_given_operation_for_each_element_n_the_list(){
 		List<Integer> list = new ArrayList<Integer>();
-		ListMapper listMapper = new ListMapper();
+		ListMapper listMapper = new CollectionUtilsFuncs();
 		for (int i = 0;i < 5;i++) {
 			list.add(i);
 		}
@@ -22,7 +24,7 @@ public class CollectionUtilsTest{
 	@Test
 	public void test_that_function_filter_works_for_integer(){
 		List<Integer> list = new ArrayList<Integer>();
-		ListFilter listFilter = new ListFilter();
+		ListFilter listFilter = new CollectionUtilsFuncs();
 		list.add(6);
 		list.add(9);
 		list.add(0);
