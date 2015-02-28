@@ -7,7 +7,7 @@ public class CollectionUtilsTest{
 	@Test
 	public void test_that_function_map_works_as_map_for_int(){
 		List<Integer> list = new ArrayList<Integer>();
-		ListMapper<Integer> listMapper = new CollectionUtilsForInteger();
+		ListMapper<Integer,Integer> listMapper = new CollectionUtilsForInteger();
 		for (int i = 0;i < 5;i++) {
 			list.add(i);
 		}
@@ -22,7 +22,7 @@ public class CollectionUtilsTest{
 	@Test 
 	public void test_that_function_map_works_as_map_for_string(){
 		List<String> list = new ArrayList<String>();
-		ListMapper<String> listMapper = new CollectionUtilsForString();
+		ListMapper<String,String> listMapper = new CollectionUtilsForString();
 		list.add("vijay");
 		list.add("pratap");
 		list.add("singh");
@@ -31,6 +31,21 @@ public class CollectionUtilsTest{
 		assertEquals("PRATAP",convertToupperCase.get(1));
 		assertEquals("SINGH",convertToupperCase.get(2));
 		assertEquals(3, convertToupperCase.size());
+	}
+
+	@Test 
+	public void test_that_function_map_converts_integer_to_string(){
+		List<Integer> list = new ArrayList<Integer>();
+		ListMapper<Integer, String> listMapper = new CollectionUtilsForIntegerToString();
+		for (int i = 1;i <= 5;i++) {
+			list.add(i);
+		}
+		List<String> addHelloInNumber = CollectionUtils.map(list,listMapper);
+		assertEquals("hello number 1", addHelloInNumber.get(0));
+		assertEquals("hello number 2", addHelloInNumber.get(1));
+		assertEquals("hello number 3", addHelloInNumber.get(2));
+		assertEquals("hello number 5", addHelloInNumber.get(4));
+		assertEquals(5, addHelloInNumber.size());
 	}
 
 	@Test

@@ -1,14 +1,14 @@
 import java.util.*;
 
-interface ListMapper<E>{
-	E mapper(E element);
+interface ListMapper<E,K>{
+	K mapper(E element);
 }
 
 interface ListFilter{
 	public boolean isGreaterThan5(int element);
 }
 
-class CollectionUtilsForInteger implements ListMapper<Integer>, ListFilter{
+class CollectionUtilsForInteger implements ListMapper<Integer,Integer>, ListFilter{
 	public Integer mapper(Integer element){
 		return element*5;
 	}
@@ -18,15 +18,21 @@ class CollectionUtilsForInteger implements ListMapper<Integer>, ListFilter{
 	}
 }
 
-class CollectionUtilsForString implements ListMapper<String>{
+class CollectionUtilsForString implements ListMapper<String,String>{
 	public String mapper(String element){
 		return element.toUpperCase();
 	}
 }
 
+class CollectionUtilsForIntegerToString implements ListMapper<Integer, String>{
+	public String mapper (Integer element){
+		return "hello number " + element; 
+	}
+}
+
 public class CollectionUtils{
-	public static<E> List<E> map(List<E> list, ListMapper<E> listMapper){
-		List<E> result = new ArrayList<E>();
+	public static<E,K> List<K> map(List<E> list, ListMapper<E,K> listMapper){
+		List<K> result = new ArrayList<K>();
 		for(E element: list){
 			result.add(listMapper.mapper(element));
 		}
