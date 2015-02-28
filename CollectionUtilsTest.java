@@ -51,14 +51,27 @@ public class CollectionUtilsTest{
 	@Test
 	public void test_that_function_filter_works_for_integer(){
 		List<Integer> list = new ArrayList<Integer>();
-		ListFilter listFilter = new CollectionUtilsForInteger();
+		ListFilter<Integer> listFilter = new CollectionUtilsForInteger();
 		list.add(6);
 		list.add(9);
 		list.add(0);
 		list.add(5);
-		List<Integer> filteredList = CollectionUtils.filter(list,listFilter);
-		assertEquals((Integer)6,filteredList.get(0));
-		assertEquals((Integer)9,filteredList.get(1));
-		assertEquals(2,filteredList.size());
+		List<Integer> greaterThan5 = CollectionUtils.filter(list,listFilter);
+		assertEquals((Integer)6,greaterThan5.get(0));
+		assertEquals((Integer)9,greaterThan5.get(1));
+		assertEquals(2,greaterThan5.size());
+	}
+	@Test 
+	public void test_that_function_filter_workds_for_string(){
+		List<String> list = new ArrayList<String>();
+		ListFilter<String> listFilter = new CollectionUtilsForFilterString();
+		list.add("vijay");
+		list.add("pratap");
+		list.add("singh");
+		List<String> giveLengthOf5String = CollectionUtils.filter(list, listFilter);
+		assertEquals("vijay",giveLengthOf5String.get(0));
+		assertEquals("singh", giveLengthOf5String.get(1));
+		assertEquals(2, giveLengthOf5String.size());
 	}
 }
+

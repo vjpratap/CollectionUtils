@@ -1,20 +1,26 @@
 import java.util.*;
 
 interface ListMapper<E,K>{
-	K mapper(E element);
+	public K mapper(E element);
 }
 
-interface ListFilter{
-	public boolean isGreaterThan5(int element);
+interface ListFilter<E>{
+	public boolean filter(E element);
 }
 
-class CollectionUtilsForInteger implements ListMapper<Integer,Integer>, ListFilter{
+class CollectionUtilsForInteger implements ListMapper<Integer,Integer>, ListFilter<Integer>{
 	public Integer mapper(Integer element){
 		return element*5;
 	}
 
-	public boolean isGreaterThan5(int element){
+	public boolean filter(Integer element){
 		return element > 5;
+	}
+}
+
+class CollectionUtilsForFilterString implements ListFilter<String>{
+	public boolean filter (String element){
+		return element.length() == 5;
 	}
 }
 
@@ -39,12 +45,15 @@ public class CollectionUtils{
 		return result;
 	}
 
-	public static List<Integer> filter(List<Integer> list, ListFilter listFilter){
-		List<Integer> result = new ArrayList<Integer>();
-		for(Integer element: list){
-			if(listFilter.isGreaterThan5(element))
+	public static<E> List<E> filter(List<E> list, ListFilter<E> listFilter){
+		List<E> result = new ArrayList<E>();
+		for(E element: list){
+			if(listFilter.filter(element))
 				result.add(element);
 		}
 		return result;
 	}
 }
+
+
+
