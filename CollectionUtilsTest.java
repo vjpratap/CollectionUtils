@@ -64,7 +64,7 @@ public class CollectionUtilsTest{
 	@Test 
 	public void test_that_function_filter_workds_for_string(){
 		List<String> list = new ArrayList<String>();
-		ListFilter<String> listFilter = new CollectionUtilsForFilterString();
+		ListFilter<String> listFilter = new CollectionUtilsForString();
 		list.add("vijay");
 		list.add("pratap");
 		list.add("singh");
@@ -73,5 +73,43 @@ public class CollectionUtilsTest{
 		assertEquals("singh", giveLengthOf5String.get(1));
 		assertEquals(2, giveLengthOf5String.size());
 	}
+
+	@Test
+	public void test_that_function_reduce_works_for_interger(){
+		List<Integer> list = new ArrayList<Integer>();
+		ListReducer<Integer, Integer> listReduce = new CollectionUtilsForInteger();
+		for (int i = 1;i <= 5; i++) {
+			list.add(i);
+		}
+		Integer intial = 0;
+		intial = CollectionUtils.reduce(list, listReduce, intial);
+		assertEquals((Integer)15, intial);
+	}
+	
+	@Test
+	public void test_that_function_reduce_works_for_string(){
+		List<String> list = new ArrayList<String>();
+		ListReducer<String, String> listReduce = new CollectionUtilsForString();
+		list.add("vijay");
+		list.add("pratap");
+		list.add("singh");
+		String intial = "";
+		intial = CollectionUtils.reduce(list, listReduce, intial);
+		assertEquals("vijay pratap singh ", intial);
+	}
+
+	@Test
+	public void test_that_function_reduce_works_for_integer_to_string(){
+		List<Integer> list = new ArrayList<Integer>();
+		ListReducer<Integer, String> listReduce = new CollectionUtilsForIntegerToString();
+		for (int i = 0; i <= 5 ; i++) {
+			list.add(i);
+		}
+		String intial = "";
+		intial = CollectionUtils.reduce(list, listReduce, intial);
+		assertEquals("012345", intial);
+	}
 }
+
+
 
