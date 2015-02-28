@@ -1,8 +1,14 @@
 import java.util.*;
 
 class ListMapper{
-	public int multiplyby5(int number){
-		return number*5;
+	public int multiplyby5(int element){
+		return element*5;
+	}
+}
+
+class ListFilter{
+	public boolean isGreaterThan5(int element){
+		return element > 5;
 	}
 }
 
@@ -10,8 +16,17 @@ class ListMapper{
 public class CollectionUtils{
 	public static List<Integer> map(List<Integer> list, ListMapper listMapper){
 		List<Integer> result = new ArrayList<Integer>();
-		for(Integer i : list){
-			result.add(listMapper.multiplyby5(i));
+		for(Integer element: list){
+			result.add(listMapper.multiplyby5(element));
+		}
+		return result;
+	}
+
+	public static List<Integer> filter(List<Integer> list, ListFilter listFilter){
+		List<Integer> result = new ArrayList<Integer>();
+		for(Integer element: list){
+			if(listFilter.isGreaterThan5(element))
+				result.add(element);
 		}
 		return result;
 	}
